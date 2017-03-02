@@ -2,7 +2,8 @@ var express = require('express');
 
 var bookRouter = express.Router();
 
-var books = [
+var router = function (nav) {
+	var books = [
 	{
 		title: 'War and Peace',
 		author: 'Lev Tolstoy',
@@ -25,22 +26,26 @@ var books = [
 	}
 ];
 
-bookRouter.route('/')
-	.get(function (req, res) {
-		res.render('books', {
-			title: 'Books',
-			nav: [{
-				Link: '/Books',
-				Text: 'Books'
-			}, {
-				Link: '/Authors',
-				Text: 'Authors'
-			}],
-			books: books
+	bookRouter.route('/')
+		.get(function (req, res) {
+			res.render('booksList', {
+				title: 'Books',
+				nav: nav,
+				books: books
+			});
 		});
-	});
 
-bookRouter.route('/single')
-	.get(function (req, res) {
-		res.send('Olar single Books');
-	});
+	bookRouter.route('/:id')
+		.get(function (req, res) {
+			var id = req.params.id;
+			res.render('booksView', {
+				title: 'Books',
+				nav: nav,
+				book: books[id]
+			});
+		});
+	
+	return bookRouter;
+};
+
+module.exports = router;
