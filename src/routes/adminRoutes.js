@@ -22,6 +22,16 @@ var books = [
 		title: 'Os Miseráveis',
 		author: 'Victor Hugo',
 		read: false
+	},
+	{
+		title: 'The Lightning Thief',
+		author: 'Rick Riordan',
+		read: false
+	},
+	{
+		title: 'Sophies World : The Greek Philosophers',
+		author: 'Jostein Gaarder',
+		read: false
 	}
 ];
 
