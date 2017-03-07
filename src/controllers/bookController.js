@@ -1,7 +1,7 @@
 var mongodb = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectID;
 
-var bookController = function (bookService, nav) {	
+var bookController = function (bookService, nav) {
 
 	var middleware = function (req, res, next) {
 		if (!req.user) {
@@ -33,17 +33,26 @@ var bookController = function (bookService, nav) {
 			collection.findOne({
 				_id: id
 			}, function (err, results) {
-				bookService.getBookById(results.bookId,
-					function (err, book) {
-						results.book = book;
-						res.render('booksView', {
-							title: 'Books',
-							nav: nav,
-							books: results
+				if (results.bookId) {
+					bookService.getBookById(results.bookId,
+						function (err, book) {
+							results.book = book;
+							res.render('booksView', {
+								title: 'Books',
+								nav: nav,
+								books: results
+							});
+
 						});
 
-					}
-				);
+				} else {
+					res.render('booksView', {
+						title: 'Books',
+						nav: nav,
+						books: results
+					});
+				}
+
 
 			});
 		});

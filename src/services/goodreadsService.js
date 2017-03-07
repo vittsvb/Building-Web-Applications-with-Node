@@ -9,7 +9,7 @@ var goodreadsService = function () {
 
 		var options = {
 			host: 'www.goodreads.com',
-			path: '/book/show/3.xml?key=hL1CRhXa8C8VFQO6XoYHg'
+			path: '/book/show/' + id + '.xml?key=hL1CRhXa8C8VFQO6XoYHg'
 		};
 
 		var callback = function (response) {
@@ -19,7 +19,7 @@ var goodreadsService = function () {
 				str += chunk;
 			});
 			response.on('end', function () {
-				//console.log(str);
+				console.log(str);
 
 				parser.parseString(str,
 					function (err, result) {
