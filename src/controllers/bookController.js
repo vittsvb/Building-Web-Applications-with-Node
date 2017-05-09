@@ -16,7 +16,7 @@ var bookController = function (bookService, nav) {
 			var collection = db.collection('books');
 			collection.find({}).toArray(function (err, results) {
 				res.render('booksList', {
-					title: 'Books',
+					title: 'Livros',
 					nav: nav,
 					books: results
 				});
@@ -38,22 +38,19 @@ var bookController = function (bookService, nav) {
 						function (err, book) {
 							results.book = book;
 							res.render('booksView', {
-								title: 'Books',
+								title: 'Livros',
 								nav: nav,
 								books: results
 							});
-
 						});
 
 				} else {
 					res.render('booksView', {
-						title: 'Books',
+						title: 'Livros',
 						nav: nav,
 						books: results
 					});
 				}
-
-
 			});
 		});
 

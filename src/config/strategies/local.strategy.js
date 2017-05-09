@@ -4,7 +4,7 @@ var passport = require('passport'),
 
 module.exports = function () {
 	passport.use(new LocalStrategy({
-			usernameField: 'userName',
+			usernameField: 'username',
 			passwordField: 'password'
 		},
 		function (username, password, done) {
@@ -16,11 +16,15 @@ module.exports = function () {
 						username: username
 					},
 					function (err, results) {
-						if (results.password === password) {
+						console.log(results);
+
+						if (results == null) {
+							done(null, false, {
+								message: 'Senha Incorreta'
+							});
+						} else {
 							var user = results;
 							done(null, user);
-						} else {
-							done(null, false, {message: 'Senha Incorreta'});
 						}
 
 					}

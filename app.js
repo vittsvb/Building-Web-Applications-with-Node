@@ -7,11 +7,8 @@ var app = express();
 var port = process.env.PORT || 5000;
 
 var nav = [{
-	Link: '/Books',
-	Text: 'Books'
-			}, {
-	Link: '/Authors',
-	Text: 'Authors'
+	Link: '/books',
+	Text: 'Livros'
 			}];
 
 var bookRouter = require('./src/routes/bookRoutes')(nav);
@@ -44,9 +41,9 @@ require('./src/config/passport')(app);
 app.set('view engine', 'ejs');
 // =================================
 
-app.use('/Books', bookRouter);
-app.use('/Admin', adminRouter);
-app.use('/Auth', authRouter);	
+app.use('/books', bookRouter);
+app.use('/admin', adminRouter);
+app.use('/auth', authRouter);	
 
 app.get('/', function (req, res) {
 	res.render('index', {

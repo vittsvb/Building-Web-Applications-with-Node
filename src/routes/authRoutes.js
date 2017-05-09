@@ -11,7 +11,7 @@ var router = function () {
 			mongodb.connect(url, function (err, db) {
 				var collection = db.collection('users');
 				var user = {
-					username: req.body.userName,
+					username: req.body.username,
 					password: req.body.password,
 				};
 				collection.insert(user, function (err, results) {
